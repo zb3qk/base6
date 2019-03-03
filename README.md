@@ -1,6 +1,6 @@
 # Base Converter Puzzle
 
-Game to help users get better with radix conversion. User tries to click all correct answers for each level.
+Game to help users get better with radix conversion. User tries to click all correct answers for each level. Built with ReactJS.
 
 ## Demo
 
