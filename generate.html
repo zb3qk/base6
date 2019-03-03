@@ -15,7 +15,7 @@
         var op2;
         var disp1;
         var displ2;
-        
+
         function gensols(answer,base){
             return answer.toString(base);
         }
@@ -41,10 +41,17 @@
                 base2=Math.floor(Math.random()*15+2);
                 num1=Math.floor(Math.random()*base1*9+1);
                 num2=Math.floor(Math.random()*base2*9+1);
+<<<<<<< HEAD
                 
                 
                 operation=Math.floor(Math.random()*4);
                 
+=======
+
+
+                operation=Math.floor(Math.random()*3);
+
+>>>>>>> jacksons-branch
                 if(operation==0){
                         answer = num1+num2;
                         op2="+";
@@ -74,12 +81,12 @@
                 var fourRandomMembers = getRandomSubarray(x, 4);
                 for(var i=0;i<fourRandomMembers.length;i++){
                         window.alert(gensols(answer,fourRandomMembers[i])+fourRandomMembers[i].toString().sub()+"right")
-                
+
                 }
                 var fiveRandomMembers = getRandomSubarray(x, 4);
                 for(var i=0;i<fiveRandomMembers.length;i++){
                         window.alert(genwsols(answer,fiveRandomMembers[i])+fiveRandomMembers[i].toString().sub()+"wrong")
-                
+
                 }
         }
         function getRandomSubarray(arr, size) {
@@ -92,7 +99,13 @@
             }
         return shuffled.slice(0, size);
         }
+<<<<<<< HEAD
 	function startFunction()		
+=======
+
+
+	function startFunction()
+>>>>>>> jacksons-branch
 	{
 	var myVar= setInterval(function(){
 				time--;
@@ -103,9 +116,14 @@
 					clearInterval(myVar);
 					window.alert("Your score is: "+score);
 				}
-			
+
 		},1000);
+<<<<<<< HEAD
 	}		
+=======
+	}
+
+>>>>>>> jacksons-branch
 		function addFunction(){
 			if(num1==null)
 			{
@@ -121,7 +139,7 @@
 			document.getElementById("score").innerHTML=score.toString();
 			clearbox()
 		}
-			
+
 		}
 		}
 		/*function yesFunction(){
@@ -141,7 +159,7 @@
 	</script>
 </head>
 <body onload="addFunction(); startFunction()">
-	
+
 	<p id="p1">5x3</p>
 	<input type="text" id="answer" onkeyup="addFunction()">
 
