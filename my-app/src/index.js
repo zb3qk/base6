@@ -14,7 +14,7 @@ function createMarkup(i) {
   return {__html: 'a<sub>d</sub>'};
 }
 function createAnswer() {
-  return {__html: window.num1+'<sub>'+window.base1+'</sub>'+window.op2+window.num2+'<sub>'+window.base2};
+  return {__html: window.disp1+'<sub>'+window.base1+'</sub>'+window.op2+window.disp2+'<sub>'+window.base2};
 }
 
 
@@ -170,6 +170,8 @@ function genrandom(){
                 window.op2=op2;
                 var disp1=num1.toString(base1);
                 var disp2=num2.toString(base2);
+                window.disp1=disp1;
+                window.disp2=disp2;
 
                 var x = [2,3,4,5,6,7,8,9,10,11,12,13,14,15];
                 var fourRandomMembers = getRandomSubarray(x, 4);
@@ -183,7 +185,7 @@ function genrandom(){
                 
                 }
                 var position=[0,1,2,3,4,5,6,7,8]
-                var correct = getRandomSubarray(x, 4);
+                var correct = getRandomSubarray(position, 4);
                 
                 var a=[' ',' ',' ',' ',' ',' ',' ',' ',' '];
                
@@ -199,6 +201,7 @@ function genrandom(){
                         }
                 }
                 window.a=a;
+
 
         }
 
