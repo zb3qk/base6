@@ -2,6 +2,7 @@
 	<link rel="stylesheet" type="text/css" href="richstyle.css">
 	<title>First JS Page</title>
 	<script type="text/javascript">
+	
 	var number1;
 	var number2;
 	var score=0;
@@ -21,30 +22,28 @@
         function genwsols(answer,base){
             return (answer+Math.floor(Math.random()*5+1)).toString(base);
         }
-
         function convert(num1, base1, num2, base2, operation){
                 if(operation=="+"){
                         return parseInt(num1,base1)+parseInt(num2,base2);
                 }
                 else if (operation =="-"){
                         return parseInt(num1,base1)-parseInt(num2,base2);
-
                 }
                 else if(operation =="*"){
                         return parseInt(num1,base1)*parseInt(num2,base2);
-
+                }
+		else if(operation =="/"){
+                        return parseInt(num1,base1)/parseInt(num2,base2);
                 }
         }
-
         function genrandom(){
-
-                base1=Math.floor(Math.random()*16+2);
-                base2=Math.floor(Math.random()*16+2);
+                base1=Math.floor(Math.random()*15+2);
+                base2=Math.floor(Math.random()*15+2);
                 num1=Math.floor(Math.random()*base1*9+1);
                 num2=Math.floor(Math.random()*base2*9+1);
                 
                 
-                operation=Math.floor(Math.random()*3);
+                operation=Math.floor(Math.random()*4);
                 
                 if(operation==0){
                         answer = num1+num2;
@@ -54,10 +53,15 @@
                         answer = num1-num2;
                         op2="-";
                 }
-                else{
+                else if(operation==2){
                         op2="*";
                         answer=num1*num2;
                 }
+		else{
+				op2="/";
+				answer = num1;
+				num1 = answer*num2;
+		}
                 //answer=convert(num1.toString(base1),base1,num2.toString(base2),base2,op2);
                 disp1=num1.toString(base1);
                 disp2=num2.toString(base2);
@@ -66,7 +70,7 @@
                 window.alert(disp1);
                 window.alert(num2);*/
                 window.alert(answer);
-                var x = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+                var x = [2,3,4,5,6,7,8,9,10,11,12,13,14,15];
                 var fourRandomMembers = getRandomSubarray(x, 4);
                 for(var i=0;i<fourRandomMembers.length;i++){
                         window.alert(gensols(answer,fourRandomMembers[i])+fourRandomMembers[i].toString().sub()+"right")
@@ -77,8 +81,6 @@
                         window.alert(genwsols(answer,fiveRandomMembers[i])+fiveRandomMembers[i].toString().sub()+"wrong")
                 
                 }
-
-
         }
         function getRandomSubarray(arr, size) {
             var shuffled = arr.slice(0), i = arr.length, temp, index;
@@ -90,8 +92,6 @@
             }
         return shuffled.slice(0, size);
         }
-
-
 	function startFunction()		
 	{
 	var myVar= setInterval(function(){
@@ -106,24 +106,20 @@
 			
 		},1000);
 	}		
-
 		function addFunction(){
 			if(num1==null)
 			{
 				genrandom();
 			document.getElementById("p1").innerHTML = this.disp1+' '+this.base1.toString().sub()+" "+op2+' '+this.disp2+' '+this.base2.toString().sub();
-
 			}
 			else{
 				if(parseInt(document.getElementById("answer").value)==answer)
 				{
-
                         genrandom();
 			document.getElementById("p1").innerHTML = this.disp1+' '+this.base1.toString().sub()+" "+op2+' '+this.disp2+' '+this.base2.toString().sub();
 			score=score+1;
 			document.getElementById("score").innerHTML=score.toString();
 			clearbox()
-
 		}
 			
 		}
@@ -138,14 +134,10 @@
 			number2=null;
 				startFunction();
 				addFunction();
-
 		}*/
 		function clearbox(){
 			document.getElementById("answer").value="";
 		}
-
-
-
 	</script>
 </head>
 <body onload="addFunction(); startFunction()">
