@@ -1,7 +1,7 @@
 'use strict';
 
 class Board {
-  constructor(width) {
+  constructor(width, htmlOfNums, correctPlaces) {
     if (typeof width !== 'number') {
       throw new Error('Width must be a number');
     }
@@ -11,29 +11,37 @@ class Board {
     }
 
     // Initialize all the neccesary stuff
-    this.BEST_POSSIBLE = 3;
+    this.htmlForSquares = [];
+    this.BEST_POSSIBLE = correctPlaces.length;
     this.correct = 0;
     this.board = [];
     this.guesses = [];
 
+    console.log("correct: " + correctPlaces);
+
     for (let i = 0; i < width; i++) {
       let board_row = [];
       let guesses_row = [];
+      let htmlForSquares_row = [];
       for (let j = 0; j < width; j++) {
-        if(j % width == 0) {
-          board_row.push(1);
+        var found = false;
+        for(var n = 0; n < correctPlaces.length; n++) {
+          if(correctPlaces[n] == i * width + j) {
+            found = true;
+            board_row.push(1);
+            break;
+          }
         }
-        else {
+        if(!found) {
           board_row.push(0);
         }
         guesses_row.push(0);
+        htmlForSquares_row.push(htmlOfNums[i*width + j]);
       }
       this.board.push(board_row);
       this.guesses.push(guesses_row);
+      this.htmlForSquares.push(htmlForSquares_row);
     }
-
-    console.log("board is:\n" + this.board);
-    console.log("guesses is:\n" + this.guesses);
   }
 
   // Return the board width.

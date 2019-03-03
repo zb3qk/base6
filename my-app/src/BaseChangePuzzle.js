@@ -1,13 +1,22 @@
 import React from 'react';
 import Board from './board';
+import {genrandom, createAnswer} from './generate.js';
 
-class TicTacToe extends React.Component {
+class BaseChangePuzzle extends React.Component {
 
   'use strict';
 
   constructor(props) {
     super(props);
-    this.board = new Board(props.width);
+    // Getting random numbers
+    var randomResults = genrandom();
+    var htmlOfNums = randomResults[0];
+    var correctPlaces = randomResults[1];
+    this.title = randomResults[2];
+
+    // Setting up the game
+    this.score = 0;
+    this.board = new Board(props.width, htmlOfNums, correctPlaces);
     this.state = {player: 1, freezeBoard: false, cont: 0, attempts: 0};
   }
 
@@ -37,7 +46,14 @@ class TicTacToe extends React.Component {
   }
 
   reset() {
-    this.board = new Board(this.props.width);
+    // Getting results fromm genrandom
+    var randomResults = genrandom();
+    var htmlOfNums = randomResults[0];
+    var corrects = randomResults[1];
+    this.title = randomResults[2];
+
+    // Setting up the new board
+    this.board = new Board(this.props.width, htmlOfNums, corrects);
     this.setState({player: 1, freezeBoard: false, cont: 0});
   }
 
@@ -48,9 +64,12 @@ class TicTacToe extends React.Component {
 
     if (this.state.cont === 1 || this.state.cont === -1) {
       const msg = this.state.cont == 1 ? 'You got\'em all!' : 'That was wrong :(';
+      const final_msg = this.state.cont == 1? '' : 'Your final score is: ' + this.score;
+      this.score = this.state.cont === 1 ? this.score + 1 : 0;
       announcement = (
         <div className="announcement">
           <p>{ msg }</p>
+          <p>{ final_msg }</p>
           <button onClick={ this.reset.bind(this) }>Reset</button>
         </div>
       );
@@ -68,7 +87,7 @@ class TicTacToe extends React.Component {
 
           if (!this.state.freezeBoard) { clickHandler = this.playerMove.bind(this); }
 
-          return <div className={ classString } key={ cellInd } onClick={ clickHandler } data-cell={ coords }></div>;
+          return <div className={ classString } key={ cellInd } onClick={ clickHandler } data-cell={ coords } dangerouslySetInnerHTML={this.board.htmlForSquares[rowInd][cellInd]}></div>;
         });
 
         return <div className="row" key={ rowInd }>{ cells }</div>;
@@ -79,7 +98,8 @@ class TicTacToe extends React.Component {
 
     return (
       <div>
-        <title>Learning Base Change</title>
+        <div class="title"> Which are equivalent to ... </div>
+        <div class="question" dangerouslySetInnerHTML={createAnswer(this.title)}></div>
         <div className="grid">
           { grid }
           { announcement }
@@ -90,4 +110,4 @@ class TicTacToe extends React.Component {
   }
 }
 
-export default TicTacToe;
+export default BaseChangePuzzle;
