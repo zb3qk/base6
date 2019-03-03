@@ -1,6 +1,5 @@
 import React from 'react';
 import Board from './board';
-import ai from './ai';
 
 class TicTacToe extends React.Component {
 
@@ -9,7 +8,7 @@ class TicTacToe extends React.Component {
   constructor(props) {
     super(props);
     this.board = new Board(props.width);
-    this.state = {player: 1, freezeBoard: false, cont: 0};
+    this.state = {player: 1, freezeBoard: false, cont: 0, attempts: 0};
   }
 
   nextPlayer() {
@@ -19,8 +18,8 @@ class TicTacToe extends React.Component {
   // Place a move on the board and check for a winner.
   move(x, y) {
     let end = this.board.move(x, y);
-
-    if (end) {
+    this.setState({attempts: this.state.attempts+1})
+    if (end == 1 || end == -1) {
       this.setState({cont: end, freezeBoard: true});
     }
   }
@@ -34,7 +33,6 @@ class TicTacToe extends React.Component {
 
     if (cellEmpty) {
       this.move(x, y);
-      this.render();
     }
   }
 

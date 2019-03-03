@@ -11,7 +11,7 @@ class Board {
     }
 
     // Initialize all the neccesary stuff
-    this.BEST_POSSIBLE = 4;
+    this.BEST_POSSIBLE = 3;
     this.correct = 0;
     this.board = [];
     this.guesses = [];
@@ -80,6 +80,7 @@ class Board {
     // Check if this was a proper guess
     if(this.board[x][y] === 1) {
       this.correct += 1;
+      console.log("corect: " + this.correct);
       // Check if have found all of the guesses
       if(this.correct === this.BEST_POSSIBLE) {
         return 1;
