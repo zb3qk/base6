@@ -4,4 +4,4 @@ Game to help users get better with radix conversion. User tries to click all cor
 
 ## Demo
 
-Live demo: dm3wb.github.io/base6
+Live demo: [dm3wb.github.io/base6](dm3wb.github.io/base6)
